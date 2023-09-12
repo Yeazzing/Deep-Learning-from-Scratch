@@ -4,8 +4,8 @@ import matplotlib.pylab as plt
 
 #계단 함수 정의
 def step_function(x):
-  y = x > 0
-  return y.astype(np.int)
+    y = x > 0
+    return y.astype(np.int)
 
 x = np.arange(-5.0, 5.0, 0.1)  #-5에서 5 사이 0.1간격의 넘파이 배열
 y = step_function(x)
@@ -18,7 +18,7 @@ plt.show()
 ##--시그모이드함수구현
 #시그모이드 함수 정의
 def sigmoid(x):
-  return 1 / (1 + np.exp(-x))
+    return 1 / (1 + np.exp(-x))
 
 x = np.arange(-5.0, 5.0, 0.1)
 y = sigmoid(x)
@@ -30,7 +30,7 @@ plt.show
 
 ##--relu함수구현
 def relu(x):
-  return np.maximum(0,x)
+    return np.maximum(0,x)
 
 ##--다차원배열
 import numpy as np
@@ -80,17 +80,17 @@ def init_network():
         return network
 
 def forward(network, x):
-  W1, W2, W3 = network["W1"], network['W2'], network['W3']
-  b1, b2, b3 = network["b1"], network['b2'], network['b3']
+    W1, W2, W3 = network["W1"], network['W2'], network['W3']
+    b1, b2, b3 = network["b1"], network['b2'], network['b3']
 
-  a1 = np.dot(x, W1) +b1 #입력값*가중치 +편향
-  z1 = sigmoid(a1)  #1층 활성화함수 출력값
-  a2 = np.dot(z1, W2) +b2  #2층
-  z2 = sigmoid(a2)  #2층 활성화함수 출력값
-  a3 = np.dot(z2, W3) +b3  #3층
-  y = a3  #출력층 활성화 함수로 항등함수 사용
+    a1 = np.dot(x, W1) +b1 #입력값*가중치 +편향
+    z1 = sigmoid(a1)  #1층 활성화함수 출력값
+    a2 = np.dot(z1, W2) +b2  #2층
+    z2 = sigmoid(a2)  #2층 활성화함수 출력값
+    a3 = np.dot(z2, W3) +b3  #3층
+    y = a3  #출력층 활성화 함수로 항등함수 사용
 
-  return y
+    return y
 
 network = init_network()
 x = np.array([1.0, 0.5])  #입력값
@@ -121,12 +121,12 @@ from mnist import load_mnist  ##mnist.py파일에 정의된 load_mnist()함수 �
 from PIL import Image
 
 #다운로드
- (X_train, t_train), (X_test, t_test) = \  #(훈련이미지, 훈련레이블), (시험이미지, 시험레이블)
+(X_train, t_train), (X_test, t_test) = \  #(훈련이미지, 훈련레이블), (시험이미지, 시험레이블)
   load_mnist(flatten=True, normalize=False)
   
 def img_show(img):
-      pil_img = Image.fromarray(np.uint8(img))
-  pil_img.show()
+    pil_img = Image.fromarray(np.uint8(img))
+    pil_img.show()
   
 img = X_train[0]  #첫번째 훈련 이미지
 label = t_train[0]
@@ -143,27 +143,27 @@ import numpy as np
 import pickle  #프로그램 실행 중에 특정 객체를 파일로 저장, 데이터 빠르게 준비 가능
 
 def get_data():
-  (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, flatten=True, one_hot_label=False)
-  return x_test, t_test
+    (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, flatten=True, one_hot_label=False)
+    return x_test, t_test
 
 def init_network():
-  with open("/content/drive/MyDrive/Colab Notebooks/밑바닥딥러닝/dataset/sample_weight.pkl", 'rb') as f:
+    with open("/content/drive/MyDrive/Colab Notebooks/밑바닥딥러닝/dataset/sample_weight.pkl", 'rb') as f:
         network = pickle.load(f) #학습된 가중치 매개변수: 가중치, 편향 매개변수가 딕션너리 변수로 되어 있음
 
-  return network
+    return network
 
 def predict(network, x):
-  W1, W2, W3 = network["W1"], network['W2'], network['W3']
-  b1, b2, b3 = network["b1"], network['b2'], network['b3']
+    W1, W2, W3 = network["W1"], network['W2'], network['W3']
+    b1, b2, b3 = network["b1"], network['b2'], network['b3']
 
-  a1 = np.dot(x, W1) +b1 #입력값*가중치 +편향
-  z1 = sigmoid(a1)  #1층 활성화함수 출력값
-  a2 = np.dot(z1, W2) +b2  #2층
-  z2 = sigmoid(a2)  #2층 활성화함수 출력값
-  a3 = np.dot(z2, W3) +b3  #3층
-  y = softmax(a3)
+    a1 = np.dot(x, W1) +b1 #입력값*가중치 +편향
+    z1 = sigmoid(a1)  #1층 활성화함수 출력값
+    a2 = np.dot(z1, W2) +b2  #2층
+    z2 = sigmoid(a2)  #2층 활성화함수 출력값
+    a3 = np.dot(z2, W3) +b3  #3층
+    y = softmax(a3)
 
-  return y
+    return y
 
 #정확도 평가
 x, t = get_data()
@@ -171,10 +171,10 @@ network = init_network()
 
 accuracy_cnt = 0
 for i in range(len(x)):
-  y = predict(network, x[i])
-  p = np.argmax(y)  #확률이 가장 높은 원소의 인덱스
-  if p == t[i]:
-    accuracy_cnt +=1
+    y = predict(network, x[i])
+    p = np.argmax(y)  #확률이 가장 높은 원소의 인덱스
+    if p == t[i]:
+        accuracy_cnt +=1
 
 print("Accuracy:" +str(float(accuracy_cnt / len(x))))  #정확도 : 맞힌 횟수 / 전체 이미지 숫자
 
@@ -186,9 +186,9 @@ batch_size = 100  #배치 크기
 accuracy_cnt = 0
 
 for i in range(0, len(x), batch_size):
-  x_batch = x[i:i+batch_size]
-  y_batch = predict(network, x_batch)
-  p = np.argmax(y_batch, axis=1)  #axis=1 : 행을 따라 최대값, axis=0 :열을 따라 최대값
-  accuracy_cnt +=np.sum(p==t[i:i+batch_size])  #True인, p와 t가 같은 개수 셈
+    x_batch = x[i:i+batch_size]
+    y_batch = predict(network, x_batch)
+    p = np.argmax(y_batch, axis=1)  #axis=1 : 행을 따라 최대값, axis=0 :열을 따라 최대값
+    accuracy_cnt +=np.sum(p==t[i:i+batch_size])  #True인, p와 t가 같은 개수 셈
 
 print("Accuray:" + str(float(accuracy_cnt)/len(x)))
